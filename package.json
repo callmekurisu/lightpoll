@@ -1,0 +1,31 @@
+{
+  "name": "lightpoll",
+  "version": "1.0.0",
+  "description": "mircopayment powered poll hosting service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callmekurisu/lightpoll.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/callmekurisu/lightpoll/issues"
+  },
+  "homepage": "https://github.com/callmekurisu/lightpoll#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "gravatar": "^1.8.0",
+    "mongoose": "^5.4.0",
+    "nodemon": "^1.18.9",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.10.0"
+  }
+}
