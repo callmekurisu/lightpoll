@@ -161,4 +161,8 @@ router.delete(
   }
 );
 
+// @route   POST api/profile/password
+// @desc    Get Reset users password
+// @access  
 module.exports = router;
+

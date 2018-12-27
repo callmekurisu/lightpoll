@@ -53,15 +53,10 @@ router.post(
       return res.status(400).json(errors);
     }
     const optionsArray = req.body.options.split(",");
-    // Initialize votes array
-    votes = [];
-    for(i = 0; i<optionsArray.length;i++){
-      votes[i] = [];
-    }
+
     const newPoll = new Poll({
       title: req.body.title,
       options: req.body.options,
-      votes,
       balance: req.body.balance,
       expiration: req.body.expiration,
       topic: req.body.topic,
@@ -242,10 +237,17 @@ router.delete(
 // @route   POST /balance/:id
 // @desc    Modify poll payout balance
 // @access  Private
+// Hash reusability bug currently being deterred with AWS Security
 router.post(
   '/balance/increase/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+    // Check for minimum of 30 satoshis
+    if(req.body.amount < 30) {
+      res.status(400).json({
+        payment: "Minimum of 30 satoshis required"
+      })
+    } else {
     Poll.findById(req.params.id)
       .then(poll => {
         // Check if a balance was added to the poll before
@@ -276,11 +278,18 @@ router.post(
               }
           })
           .catch(err => {
-            console.log("Something went wrong");
+            res.status(404).json({
+              payment: "Bad payment request sent"
+            })
+            console.log("Something went wrong with the hash probably...");
           });
         }
       })
-      .catch(err => res.status(404).json({ pollnotfound: 'No poll found' }));
+      .catch(err => 
+        res.status(404).json({ 
+          pollnotfound: 'No poll found' 
+      }));
+    }
   }
 );
 
@@ -288,28 +297,26 @@ router.post(
 // @desc    Vote on a poll option
 // @access  Private
 router.post(
-  '/vote/:id/:option',
+  '/vote/:id/:choice',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
       Poll.findById(req.params.id)
         .then(poll => {
-          poll.votes.forEach(option => {
-            option.some(id => {
-              if(id === user.req.id){
-                res.json({
-                  alreadyVoted: "User already voted on this poll"
-                })
-              } else {
-                // Add user id to index correlated to option
-                poll.votes[req.params.option].unshift(req.user.id)
-              }
-            })
-          });
+          if (
+            poll.votes.filter(vote => vote.user.toString() === req.user.id)
+              .length > 0
+          ) {
+            return res
+              .status(400)
+              .json({ alreadyvoted: 'User already voted on this post' });
+          }
 
+          // Add user id to likes array
+          poll.votes.unshift({ user: req.user.id, choice: req.params.choice });
           poll.save().then(poll => res.json(poll));
         })
-        .catch(err => res.status(404).json({ postnotfound: 'No poll found' }));
+        .catch(err => res.status(404).json({ pollnotfound: `${err}` }));
     });
   }
 );
