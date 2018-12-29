@@ -65,7 +65,7 @@ router.get('/handle/:handle', (req, res) => {
   const errors = {};
 
   Profile.findOne({ handle: req.params.handle })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['username', 'avatar'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -119,7 +119,7 @@ router.post(
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.bio) profileFields.bio = req.body.bio;
-    if (req.body.status) profileFields.status = req.body.status;
+    if (req.body.location) profileFields.location = req.body.location;
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
         // Update

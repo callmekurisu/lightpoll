@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth-actions';
-import TextFieldGroup from '../common/text-field-group';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
   constructor() {
@@ -50,7 +50,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const errors = this.state.errors;
 
     return (
       <div className="login">

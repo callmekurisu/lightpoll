@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile-actions';
 import Spinner from '../common/Spinner';
 
-
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -18,7 +17,6 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-
     let dashboardContent;
 
     if (profile === null || loading) {
@@ -29,7 +27,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+              Welcome <Link to={`/profile/${profile.handle}`}>{user.username}</Link>
             </p>
             <div style={{ marginBottom: '60px' }} />
             <button
