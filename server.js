@@ -1,3 +1,4 @@
+const keys = require('./config/keys');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -7,10 +8,10 @@ const profile = require('./routes/api/profile');
 const polls = require('./routes/api/polls');
 const passport = require('passport');
 const app = express();
-
+// This app requires cors
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: keys.DEV_CLIENT,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 app.use(cors(corsOptions));

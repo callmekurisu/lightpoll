@@ -1,12 +1,10 @@
-//variables for prod vs dev
+import * as env from '../Include/env';
 
 
 const dev = {
-    context: "http://localhost:5000"
+    server: env.DEV_SERVER
    };
-   
    const prod = {
-    context: "http://localhost:5000"
+    server: env.PROD_SERVER
    };
-   
    export const environment = process.env.NODE_ENV === "production" ? prod : dev;

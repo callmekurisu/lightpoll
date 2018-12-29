@@ -2,19 +2,21 @@ import PollClient from '../Axios/PollClient';
 
 import {
   ADD_POLL,
+  ADD_BALANCE,
   GET_ERRORS,
   CLEAR_ERRORS,
   GET_POLLS,
   GET_POLL,
   POLL_LOADING,
-  DELETE_POLL
+  DELETE_POLL,
+  POLL_FORM
 } from './types';
 
 // Add Poll
 export const addPoll = pollData => dispatch => {
   dispatch(clearErrors());
   PollClient
-    .post('/api/poll', pollData)
+    .post('/api/polls', pollData)
     .then(res =>
       dispatch({
         type: ADD_POLL,
@@ -148,6 +150,29 @@ export const deleteComment = (pollId, commentId) => dispatch => {
     );
 };
 
+export const addBalance = (pollId, amount) => dispatch => {
+  PollClient
+    .delete(`/api/polls/balance/${pollId}/${amount}`)
+    .then(res =>
+      dispatch({
+        type: ADD_BALANCE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Control the create poll from
+export const toggleAddPoll = () => dispatch => {
+  dispatch({
+    type: POLL_FORM
+  })
+};
 // Set loading state
 export const setPollLoading = () => {
   return {

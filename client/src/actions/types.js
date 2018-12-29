@@ -10,4 +10,6 @@ export const POLL_LOADING = 'POLL_LOADING';
 export const GET_POLLS = 'GET_POLLS';
 export const GET_POLL = 'GET_POLL';
 export const ADD_POLL = 'ADD_POLL';
+export const POLL_FORM = 'POLL_FORM';
+export const ADD_BALANCE = 'ADD_BALANCE';
 export const DELETE_POLL = 'DELETE_POLL';

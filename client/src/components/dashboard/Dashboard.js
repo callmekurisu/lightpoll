@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile-actions';
 import Spinner from '../common/Spinner';
+import CreatePoll from '../poll/CreatePoll';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -27,8 +28,11 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.username}</Link>
+              What's up <Link to={`/profile/${profile.handle}`}>{user.username}</Link>!
             </p>
+            <p>Polls Created:</p>
+            <p>Satoshis Added:</p>
+            <CreatePoll/>
             <div style={{ marginBottom: '60px' }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
@@ -57,7 +61,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
+              <h1 className="display-4"></h1>
               {dashboardContent}
             </div>
           </div>
