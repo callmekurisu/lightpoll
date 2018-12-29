@@ -95,9 +95,13 @@ router.delete(
           }
 
           // Delete
-          [poll].remove().then(() => res.json({ success: true }));
+          poll.remove().then(() => 
+            res.json({ success: true }));
         })
-        .catch(err => res.status(404).json({ pollnotfound: 'No poll found' }));
+        .catch(err =>
+          res.status(404).json({ 
+            pollnotfound: `No poll found`
+          }));
     });
   }
 );
