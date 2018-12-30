@@ -6,6 +6,7 @@ import {
   GET_ERRORS,
   CLEAR_ERRORS,
   GET_POLLS,
+  GET_USER_DB_POLLS,
   GET_POLL,
   POLL_LOADING,
   DELETE_POLL,
@@ -50,7 +51,7 @@ export const getPolls = () => dispatch => {
     );
 };
 
-// Get Poll
+// Get Poll by id
 export const getPoll = id => dispatch => {
   dispatch(setPollLoading());
   PollClient
@@ -69,6 +70,24 @@ export const getPoll = id => dispatch => {
     );
 };
 
+// Get polls for user dashboard
+export const getUserDbPolls = id => dispatch => {
+  dispatch(setPollLoading());
+  PollClient
+    .get(`/api/polls/user/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_USER_DB_POLLS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_USER_DB_POLLS,
+        payload: null
+      })
+    );
+};
 // Delete Poll
 export const deletePoll = id => dispatch => {
   PollClient

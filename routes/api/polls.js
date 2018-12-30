@@ -27,6 +27,21 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nopollfound: 'No polls found' }));
 });
 
+// @route   GET api/polls/:userid
+// @desc    Get polls for user dashboard
+// @access  Private
+router.get('/user/:userid', 
+passport.authenticate('jwt', { session: false }),
+(req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Poll.find(
+      { user: { $in: `${req.user.id}` } }
+    )
+      .then(poll => res.json(poll));
+      })
+      .catch(err => res.status(404).json({ pollnotfound: 'No poll found' }));
+  });
+
 // @route   GET api/polls/:id
 // @desc    Get poll by id
 // @access  Public

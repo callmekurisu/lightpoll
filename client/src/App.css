@@ -11,3 +11,28 @@ img {
   margin-top: -24px;
   margin-bottom: -50px;
 }
+
+.logout {
+  color: grey;
+}
+
+/*********************************
+Dashboard Polls
+***********************************/
+.poll-display {
+  min-width: 100%;
+  overflow-y: auto;
+}
+
+.poll-card {
+  padding: 10px;
+}
+/*no scrollbar son! */
+.bountyTable::-webkit-scrollbar {
+  display: none;
+}
+
+.poll-card-footer {
+  display: flex;
+  justify-content: space-between;
+}

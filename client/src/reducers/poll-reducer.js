@@ -5,9 +5,10 @@ import {
     GET_POLLS,
     GET_POLL,
     DELETE_POLL,
-    POLL_LOADING
+    POLL_LOADING,
+    GET_USER_DB_POLLS
   } from '../actions/types';
-  
+
   const initialState = {
     polls: [],
     poll: {},
@@ -22,6 +23,12 @@ import {
           loading: true
         };
       case GET_POLLS:
+        return {
+          ...state,
+          polls: action.payload,
+          loading: false
+        };
+      case GET_USER_DB_POLLS:
         return {
           ...state,
           polls: action.payload,

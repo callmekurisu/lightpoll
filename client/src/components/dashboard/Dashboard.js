@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile-actions';
 import Spinner from '../common/Spinner';
 import CreatePoll from '../poll/CreatePoll';
-
+import banner from '../../img/banner.jpg';
+import PollContainer from '../poll/PollContainer';
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -30,14 +31,19 @@ class Dashboard extends Component {
             <p className="lead text-muted">
               What's up <Link to={`/profile/${profile.handle}`}>{user.username}</Link>!
             </p>
-            <p>Polls Created:</p>
-            <p>Satoshis Added:</p>
+            <h3>Stats</h3>
+            <p>Polls Created: {this.props.poll.polls.length}</p>
+            <p>Satoshis Added: </p>
             <CreatePoll/>
+            <hr/>
+            <div className="dashboard-polls">
+            <h3>Your Polls</h3>
+            <PollContainer/>
+            </div>
             <div style={{ marginBottom: '60px' }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
+              className="btn btn-danger">
               Delete My Account
             </button>
           </div>
@@ -61,7 +67,8 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4"></h1>
+              <img src={banner} alt="banner"/>
+              <br/>
               {dashboardContent}
             </div>
           </div>
@@ -80,9 +87,12 @@ Dashboard.propTypes = {
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  poll: state.poll
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
-  Dashboard
-);
+export default 
+  connect(mapStateToProps,
+    { getCurrentProfile,
+      deleteAccount
+    })(Dashboard);
