@@ -14,14 +14,20 @@ render(){
   return(
     <>
       <div className="poll-display">
-      {
-        this.props.poll.polls.map(poll => 
+      {/* Display message for first time pollers */}
+      {this.props.poll.polls.length === 0 &&
+      <p>Create your first poll</p>}
+      {/* Otherwise display the user's polls */}
+      { this.props.poll.polls.length > 0 &&
+        this.props.poll.polls.map(poll =>
           <DashboardPollCard
           key={poll._id}
           title={poll.title}
           date={poll.date}
           options={poll.options}
-          balance={poll.balance}/>
+          balance={poll.balance}
+          paying={poll.paying}
+          pollId={poll._id}/>
         )
       }
       </div>

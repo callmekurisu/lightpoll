@@ -32,13 +32,13 @@ class Dashboard extends Component {
               What's up <Link to={`/profile/${profile.handle}`}>{user.username}</Link>!
             </p>
             <h3>Stats</h3>
-            <p>Polls Created: {this.props.poll.polls.length}</p>
-            <p>Satoshis Added: </p>
+              <p>Polls Created: {this.props.poll.polls.length}</p>
+              <p>Satoshis Available: </p>
             <CreatePoll/>
             <hr/>
             <div className="dashboard-polls">
-            <h3>Your Polls</h3>
-            <PollContainer/>
+              <h3>Your Polls</h3>
+              <PollContainer/>
             </div>
             <div style={{ marginBottom: '60px' }} />
             <button

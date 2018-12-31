@@ -34,12 +34,12 @@ render() {
   return(
     <div>
       <Button color="primary" onClick={this.props.toggleAddPoll}>CreatePoll</Button>
-        <Modal isOpen={this.props.poll.modal} toggle={this.props.toggleAddPoll} className={this.props.className}>
+        <Modal isOpen={this.props.poll.createPollModal} toggle={this.props.toggleAddPoll} className={this.props.className}>
           <ModalHeader >New Poll</ModalHeader>
           <ModalBody>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Title: </InputGroupAddon>
-            <Input placeholder="title goes here" onChange={this.getTitle}/>
+            <Input placeholder="10-100 characters" onChange={this.getTitle}/>
           </InputGroup>
           <br/>
           <InputGroup>
@@ -48,7 +48,10 @@ render() {
           </InputGroup>
           </ModalBody>
           <ModalFooter>
+            {
+              this.state.title.length >=10 &&
             <Button color="primary" onClick={()=>this.props.addPoll(pollData)}>Add Poll</Button>
+            }
             <Button color="secondary" onClick={this.props.toggleAddPoll}>Cancel</Button>
           </ModalFooter>
         </Modal>

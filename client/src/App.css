@@ -27,12 +27,18 @@ Dashboard Polls
 .poll-card {
   padding: 10px;
 }
-/*no scrollbar son! */
-.bountyTable::-webkit-scrollbar {
-  display: none;
-}
 
 .poll-card-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.invoice {
+  display: block;
+  margin: auto;
+  overflow-wrap: break-word;
+}
+
+.delete-poll {
+  margin-left: 10px;
 }

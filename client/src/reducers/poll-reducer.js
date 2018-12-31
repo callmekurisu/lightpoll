@@ -6,14 +6,16 @@ import {
     GET_POLL,
     DELETE_POLL,
     POLL_LOADING,
-    GET_USER_DB_POLLS
+    GET_USER_DB_POLLS,
+    BALANCE_FORM
   } from '../actions/types';
 
   const initialState = {
     polls: [],
     poll: {},
     loading: false,
-    modal: false
+    balanceModal: false,
+    createPollModal: false
   }
   export default function(state = initialState, action) {
     switch (action.type) {
@@ -54,7 +56,12 @@ import {
       case POLL_FORM:
         return {
           ...state,
-          modal: !state.modal
+          createPollModal: !state.createPollModal
+        };
+      case BALANCE_FORM:
+        return {
+          ...state,
+          balanceModal: !state.balanceModal
         };
       case DELETE_POLL:
         return {

@@ -10,7 +10,8 @@ import {
   GET_POLL,
   POLL_LOADING,
   DELETE_POLL,
-  POLL_FORM
+  POLL_FORM,
+  BALANCE_FORM
 } from './types';
 
 // Add Poll
@@ -169,9 +170,9 @@ export const deleteComment = (pollId, commentId) => dispatch => {
     );
 };
 
-export const addBalance = (pollId, amount) => dispatch => {
+export const addBalance = (pollId, amount, hash) => dispatch => {
   PollClient
-    .delete(`/api/polls/balance/${pollId}/${amount}`)
+    .post(`/api/polls/balance/increase/${pollId}`)
     .then(res =>
       dispatch({
         type: ADD_BALANCE,
@@ -186,10 +187,16 @@ export const addBalance = (pollId, amount) => dispatch => {
     );
 };
 
-// Control the create poll from
+// Control the add poll form
 export const toggleAddPoll = () => dispatch => {
   dispatch({
-    type: POLL_FORM
+    type:POLL_FORM
+  })
+};
+// Control the add balance form
+export const toggleAddBalance = () => dispatch => {
+  dispatch({
+    type: BALANCE_FORM
   })
 };
 // Set loading state

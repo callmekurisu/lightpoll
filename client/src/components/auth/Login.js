@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth-actions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import banner from '../../img/banner.jpg';
 
 class Login extends Component {
   constructor() {
@@ -57,7 +58,8 @@ class Login extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
+            <img src={banner} alt="banner"/>
+            <hr/>
               <p className="lead text-center">
                 Sign in to your Lightpoll account
               </p>

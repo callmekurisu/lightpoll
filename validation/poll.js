@@ -7,7 +7,7 @@ module.exports = function validatePostInput(data) {
   data.title = !isEmpty(data.title) ? data.title : '';
   data.options = !isEmpty(data.options) ? data.options : '';
 
-  if (!Validator.isLength(data.title, { min: 3, max: 30 })) {
+  if (!Validator.isLength(data.title, { min: 10, max: 100 })) {
     errors.title = 'Poll title must be between 10 and 100 characters';
   }
 
