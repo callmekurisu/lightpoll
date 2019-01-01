@@ -21,6 +21,14 @@ const ProfileSchema = new Schema({
   github: {
     type: String
   },
+  satsAdded: {
+    type: Number,
+    default: 0
+  },
+  satsEarned: {
+    type: Number,
+    default: 0
+  },
   date: {
     type: Date,
     default: Date.now

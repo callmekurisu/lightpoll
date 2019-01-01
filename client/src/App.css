@@ -1,3 +1,41 @@
+body {
+  background-color: #F7EDD4;
+}
+
+.btn {
+  background-color: #FCBA12;
+  color: #2E2FE3;
+  border-style: none;
+}
+
+.btn:hover {
+  background-color: #2E2FE3;
+  color: #F7EDD4;
+  border-style: none;
+}
+
+.background {
+  background-color: #090934 !important;
+}
+
+.logout {
+  background-color: #090934 !important;
+  border-style: none;
+}
+
+.profile-header {
+  background-color: #F7EDD4 !important;
+  border-style: none;
+}
+
+.profile-text {
+  color: #2E2FE3;
+}
+
+.text {
+  color: #FCBA12;
+}
+
 img {
   width: 100%;
 }

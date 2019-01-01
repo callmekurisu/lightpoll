@@ -40,8 +40,8 @@ class Profile extends Component {
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
-          {profile.githubusername ? (
-            <ProfileGithub username={profile.githubusername} />
+          {profile.github ? (
+            <ProfileGithub username={profile.github} />
           ) : null}
         </div>
       );

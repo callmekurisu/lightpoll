@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/auth-actions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import banner from '../../img/banner.jpg';
 
 class Register extends Component {
   constructor() {
@@ -55,7 +56,7 @@ class Register extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
+            <img src={banner} alt="banner"/>
               <p className="lead text-center">
                 Create your Lightpoll account
               </p>

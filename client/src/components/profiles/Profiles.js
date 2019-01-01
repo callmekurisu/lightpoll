@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../actions/profile-actions';
-
+import banner from '../../img/banner.jpg';
 class Profiles extends Component {
   componentDidMount() {
     this.props.getProfiles();
@@ -31,7 +31,7 @@ class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Poller Profiles</h1>
+            <img src={banner} alt="banner"/>
               <p className="lead text-center">
                 Browse and connect with pollers
               </p>

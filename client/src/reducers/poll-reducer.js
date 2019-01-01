@@ -46,7 +46,7 @@ import {
         return {
           ...state,
           polls: [action.payload, ...state.polls],
-          modal: false
+          createPollModal: false
         };
       case ADD_BALANCE:
         return {

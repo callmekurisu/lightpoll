@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { createProfile } from '../../actions/profile-actions';
+import banner from '../../img/banner.jpg';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class CreateProfile extends Component {
       displaySocialInputs: false,
       handle: '',
       location: '',
-      githubusername: '',
+      github: '',
       errors: {}
     };
 
@@ -33,7 +34,7 @@ class CreateProfile extends Component {
     const profileData = {
       handle: this.state.handle,
       location: this.state.location,
-      githubusername: this.state.githubusername,
+      github: this.state.github,
       bio: this.state.bio,
     };
 
@@ -52,7 +53,7 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
+            <img src={banner} alt="banner"/>
               <p className="lead text-center">
                 Let's get some information to make your profile stand out
               </p>
@@ -77,9 +78,9 @@ class CreateProfile extends Component {
                 <TextFieldGroup
                   placeholder="Github Username"
                   name="githubusername"
-                  value={this.state.githubusername}
+                  value={this.state.github}
                   onChange={this.onChange}
-                  error={errors.githubusername}
+                  error={errors.github}
                   info="If you want your latest repos and a Github link, include your username"
                 />
                 <TextAreaFieldGroup

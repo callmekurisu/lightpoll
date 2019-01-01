@@ -19,12 +19,12 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/feed">
-            Poll Feed
+          <p className="text"> Poll Feed</p>
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
-            Dashboard
+          <p className="text">Dashboard </p>
           </Link>
         </li>
         <li className="nav-item">
@@ -35,10 +35,10 @@ class Navbar extends Component {
               style={{ width: '25px', marginRight: '5px' }}
               title="You must have a Gravatar connected to your email to display an image"
             />{' '}
-          <button className="btn btn-secondary-outline logout"
+          <button className="logout"
             onClick={this.onLogoutClick.bind(this)}
           >
-            Logout
+            <p className="text">Logout</p>
           </button>
         </li>
       </ul>
@@ -48,22 +48,22 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/register">
-            Sign Up
+          <p className="text"> Sign Up </p>
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/login">
-            Login
+          <p className="text">Pollers</p>
           </Link>
         </li>
       </ul>
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar background navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            Lightpoll
+            <p className="text">Lightpoll</p>
           </Link>
           <button
             className="navbar-toggler"
@@ -79,7 +79,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {' '}
-                  Pollers
+                  <p className="text">Pollers</p>
                 </Link>
               </li>
             </ul>

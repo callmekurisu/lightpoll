@@ -11,10 +11,9 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displaySocialInputs: false,
       handle: '',
       location: '',
-      githubusername: '',
+      github: '',
       bio: '',
       errors: {}
     };
@@ -38,7 +37,7 @@ class CreateProfile extends Component {
 
       // If profile field doesnt exist, make empty string
       profile.location = !isEmpty(profile.location) ? profile.location : '';
-      profile.githubusername = !isEmpty(profile.githubusername)
+      profile.github = !isEmpty(profile.github)
         ? profile.githubusername
         : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
@@ -46,7 +45,7 @@ class CreateProfile extends Component {
       this.setState({
         handle: profile.handle,
         location: profile.location,
-        githubusername: profile.githubusername,
+        github: profile.github,
         bio: profile.bio
       });
     }
@@ -58,7 +57,7 @@ class CreateProfile extends Component {
     const profileData = {
       handle: this.state.handle,
       location: this.state.location,
-      githubusername: this.state.githubusername,
+      github: this.state.github,
       bio: this.state.bio,
     };
 

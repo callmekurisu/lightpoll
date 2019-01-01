@@ -14,7 +14,7 @@ class ProfileAbout extends Component {
       <div className="row">
         <div className="col-md-12">
           <div className="card card-body bg-light mb-3">
-            <h3 className="text-center text-info">{username}'s Bio</h3>
+            <h3 className="profile-text text-center">{username}'s bio</h3>
             <p className="lead">
               {isEmpty(profile.bio) ? (
                 <span>{username} does not have a bio</span>
@@ -27,9 +27,10 @@ class ProfileAbout extends Component {
               {isEmpty(profile.location) ? (
                 <span>{username} does not have a location</span>
               ) : (
-                <span>{profile.location}</span>
+                <span className="about">Location: {profile.location}</span>
               )}
             </p>
+            <p>Github: {profile.github}</p>
           </div>
         </div>
       </div>
