@@ -32,6 +32,7 @@ class Profiles extends Component {
           <div className="row">
             <div className="col-md-12">
             <img src={banner} alt="banner"/>
+            <hr/>
               <p className="lead text-center">
                 Browse and connect with pollers
               </p>

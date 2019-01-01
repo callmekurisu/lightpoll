@@ -45,6 +45,7 @@ img {
   background: url('./img/light.jpg') no-repeat;
   background-size: cover;
   background-position: center;
+  opacity: 0.2;
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;

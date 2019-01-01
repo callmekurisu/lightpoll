@@ -34,6 +34,8 @@ class Dashboard extends Component {
             <h3>Stats</h3>
               <p>Polls Created: {this.props.poll.polls.length}</p>
               <p>Satoshis Available: </p>
+              <p>Total Satoshis Added: {profile.satsAdded} </p>
+              <p>Total Satoshis Earned: {profile.satsEarned}</p>
             <CreatePoll/>
             <hr/>
             <div className="dashboard-polls">
