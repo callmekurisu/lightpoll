@@ -17,8 +17,8 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Lightpoll</h1>
-                <p className="lead">
+                <h1 className="text display-3 mb-4">Lightpoll</h1>
+                <p className="text lead">
                   {' '}
                   Poll hosting service powered by the Lightning Network API.
                 </p>
