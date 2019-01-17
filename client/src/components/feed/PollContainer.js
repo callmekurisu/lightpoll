@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { getUserDbPolls } from '../../actions/poll-actions';
+import { getPolls } from '../../actions/poll-actions';
 import { connect } from 'react-redux';
-import DashboardPollCard from './DashboardPollCard';
+import DashboardPollCard from './FeedPollCard';
 
 class PollContainer extends Component {
 
   // Get the polls for the logged in user
   componentDidMount() {
-    const id = this.props.profile.profile.user._id;
-    this.props.getUserDbPolls(id)
+    this.props.getPolls();
   }
 render(){
   return(
@@ -43,4 +42,4 @@ const mapStateToProps = state => ({
 
 export default
   connect(mapStateToProps,
-    { getUserDbPolls })(PollContainer);
+    { getPolls })(PollContainer);

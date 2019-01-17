@@ -33,7 +33,7 @@ export const addPoll = pollData => dispatch => {
     );
 };
 
-// Get Polls
+// Get Polls for feed
 export const getPolls = () => dispatch => {
   dispatch(setPollLoading());
   PollClient
@@ -170,9 +170,13 @@ export const deleteComment = (pollId, commentId) => dispatch => {
     );
 };
 
+// Add payouts to poll
 export const addBalance = (pollId, amount, hash) => dispatch => {
   PollClient
-    .post(`/api/polls/balance/increase/${pollId}`)
+    .post(`/api/polls/balance/increase/${pollId}` , {
+      amount,
+      hash
+    })
     .then(res =>
       dispatch({
         type: ADD_BALANCE,

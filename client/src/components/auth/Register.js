@@ -57,6 +57,7 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
             <img src={banner} alt="banner"/>
+            <hr/>
               <p className="lead text-center">
                 Create your Lightpoll account
               </p>

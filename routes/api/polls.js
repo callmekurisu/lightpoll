@@ -293,8 +293,21 @@ router.post(
                 poll.paying = true;
                 // Set balance to amount of invoice
                 poll.balance = parseInt(poll.balance)+parseInt(req.body.amount);
-                poll.save().then(post => res.json(post));
-              }
+                // increase user's satoshi added stat
+                Profile.findOne({ user: req.user.id }).then(profile => {
+                  const satsAdded = profile.satsAdded += poll.balance;
+                  if (profile) {
+                    // Update
+                    Profile.findOneAndUpdate(
+                      { user: req.user.id },
+                      { $set: satsAdded },
+                      { new: true }
+                    )
+                    profile.save();
+                  }
+                })
+                poll.save().then(poll => res.json(poll))
+            }
           })
           .catch(err => {
             res.status(404).json({
@@ -304,9 +317,9 @@ router.post(
           });
         }
       })
-      .catch(err => 
-        res.status(404).json({ 
-          pollnotfound: 'No poll found' 
+      .catch(err =>
+        res.status(404).json({
+          pollnotfound: 'No poll found'
       }));
     }
   }

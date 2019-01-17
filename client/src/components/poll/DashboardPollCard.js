@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addBalance, deletePoll } from '../../actions/poll-actions';
 import { Card, CardBody,
   CardTitle, CardSubtitle } from 'reactstrap';
 import Invoice from './Invoice';
@@ -13,22 +15,24 @@ class DashboardPollCard extends Component {
        amount: 0,
        invoice: '',
        hash: '',
+       pollId: '',
        openInvoice: false,
        paid: false,
        error: "Could not generate invoice"
       };
     }
-  generateInvoice = () =>{
+  generateInvoice = (pollId) =>{
     PayClient.get(`invoice/lightpoll/${this.state.amount}`)
       .then((response) => {
         this.setState({
           ...this.state,
           invoice: response.data.invoice,
           hash: response.data.hash,
+          pollId,
           openInvoice: true
         })
       }).catch(err => {
-          console.log(this.state.error);
+         // Open error dialog
         })
       setTimeout(()=>{
         PayClient.get(`listen/${this.state.invoice}`)
@@ -39,8 +43,13 @@ class DashboardPollCard extends Component {
                 paid: true,
                 openInvoice: false
             })
-            // call action to add balance to poll
-            //  console.log(`Got ${this.state.amount} satoshis`)
+            // Call server to verify payment and add balance
+            const pollId = this.state.pollId;
+            const amt = this.state.amount;
+            const hash = this.state.hash;
+            this.props.addBalance(pollId, amt, hash);
+            // work around until figuring out to update state in real time
+            window.location.reload();
           } else {
           this.setState({
             ...this.state,
@@ -49,7 +58,7 @@ class DashboardPollCard extends Component {
           })
         }
       }).catch(err => {
-          console.log(this.state.error);
+          // Open error dialog
           })
         }, 5000)
       };
@@ -65,7 +74,7 @@ class DashboardPollCard extends Component {
     handleClose = () => {
       this.setState({ openInvoice: false });
     };
-render(){
+render(){ 
   // Make the string from the database iterable
   const arr = this.props.options[0].split(",");
   return (
@@ -73,7 +82,12 @@ render(){
       <Card>
         <CardBody>
           <CardTitle><strong>{this.props.title}</strong></CardTitle>
-          <CardSubtitle>{moment(this.props.date).format('MMMM Do YYYY, h:mm:ss a')}</CardSubtitle>
+          <CardSubtitle>
+            Poll #: {this.props.pollId}
+          </CardSubtitle>
+          <br/>
+          <CardSubtitle>
+          {moment(this.props.date).format('MMMM Do YYYY, h:mm:ss a')}</CardSubtitle>
           <br/>
           <CardSubtitle>Balance: {this.props.balance}</CardSubtitle>
         </CardBody>
@@ -113,9 +127,10 @@ render(){
           <br/>
             { this.state.amount >= 30 &&
               <button className="btn btn-primary invoice-btn"
-              onClick={this.generateInvoice}>Generate Invoice</button>
+              onClick={()=>this.generateInvoice(this.props.pollId)}>Generate Invoice</button>
             }
-            <button className="btn btn-danger delete-poll">Delete Poll</button>
+            <button className="btn btn-danger delete-poll"
+            onClick={()=>this.props.deletePoll(this.props.pollId)}>Delete Poll</button>
         </CardBody>
       </Card>
     </div>
@@ -123,4 +138,11 @@ render(){
  }
 };
 
-export default DashboardPollCard;
+const mapStateToProps = state => ({
+  profile: state.profile,
+  poll: state.poll
+});
+
+export default
+  connect(mapStateToProps,
+    { addBalance, deletePoll })(DashboardPollCard);
