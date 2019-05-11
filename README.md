@@ -19,3 +19,10 @@ https://documenter.getpostman.com/view/6021851/RznBMfk3
 <img src="/lightpoll.png/">
 
 
+<p align="center">
+  <a target="_blank" rel="noopener noreferrer" href="https://tiphub.io/user/1186002563/tip?site=github">
+    <img src="https://tiphub.io/static/images/tip-button-light.png" alt="Tip callmekurisu on TipHub" height="60">
+    <br />
+    My pubkey starts with <code>028eab9c</code>
+  </a>
+</p>
